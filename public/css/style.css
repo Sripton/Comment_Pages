@@ -1,187 +1,277 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 /* Основные стили */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #6e83ca;
-    padding: 20px;
-    margin: 0;
-    color: #333;
+
+.comments-container {
+  background-color: #6e83ca;
+  height: 100vh;
+  padding: 20px;
+  color: #333;
 }
 
 h2 {
-    text-align: center;
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .comments-section {
-    max-width: 700px;
-    margin: 20px auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  margin: 20px auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Добавление комментария */
 .add-comment {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .add-comment textarea {
-    width: 100%;
-    height: 100px;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
+  width: 100%;
+  height: 100px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
 }
 
 .add-comment textarea:focus {
-    border-color: #007BFF;
-    outline: none;
+  border-color: #007bff;
+  outline: none;
 }
 
 .add-comment button {
-    align-self: flex-end;
-    padding: 12px 24px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  align-self: flex-end;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .add-comment button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+  background-color: #0056b3;
+  transform: translateY(-2px);
 }
 
 .add-comment button:active {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 /* Комментарии */
 .comment {
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fafafa;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .comment .comment-text {
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #333;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333;
 }
 
 .comment-actions {
+  display: flex;
+  gap: 15px;
+}
+.dots {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+/* Скрытие кнопок и показ трех точек на экранах меньше 765px */
+@media (max-width: 765px) {
+  .comment-actions {
+    display: none;
+  }
+
+  .dots {
+    display: inline-block;
+  }
+}
+
+.close-btn {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #ff0000;
+  margin-top: 10px;
+}
+
+/* Показываем кнопку "X" при активных кнопках */
+.show-actions .close-btn {
+  display: inline-block;
+}
+
+@media (max-width: 765px) {
+  .comment-actions {
+    display: none;
+  }
+
+  .dots {
+    display: inline-block;
+  }
+
+  /* Когда кнопки видимы, скрываем три точки */
+  .show-actions .dots {
+    display: none;
+  }
+
+  /* Когда кнопки видимы, показываем их и кнопку "X" */
+  .show-actions .comment-actions {
     display: flex;
-    gap: 15px;
+  }
+
+  .show-actions .close-btn {
+    display: inline-block;
+  }
+}
+
+/* Класс для показа кнопок при нажатии на три точки */
+.show-actions .comment-actions {
+  display: flex;
+}
+
+.show-actions .dots {
+  display: none;
 }
 
 .comment-actions button {
-    padding: 10px 18px;
-    border: none;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: bold;
-    color: #333;
+  padding: 10px 18px;
+  border: none;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  color: #333;
 }
 
 .comment-actions button:hover {
-    background-color: #e0e0e0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .comment-actions .like-btn:hover {
-    background-color: #007BFF;
-    color: white;
+  background-color: #007bff;
+  color: white;
 }
 
 .comment-actions .dislike-btn:hover {
-    background-color: #dc3545;
-    color: white;
+  background-color: #dc3545;
+  color: white;
+}
+.toggle-comments-btn {
+  padding: 10px 18px;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
 }
 
-/* Ответы */
-.replies {
-    margin-left: 30px;
-    margin-top: 10px;
-    padding-left: 15px;
-    border-left: 3px solid #ddd;
+.toggle-comments-btn:hover {
+  background-color: #e0e0e0;
 }
 
 /* Скрытый элемент */
 .hidden {
-    display: none;
+  display: none;
+}
+/* Ответы */
+.replies {
+  margin-left: 30px;
+  margin-top: 10px;
+  padding-left: 15px;
+  border-left: 3px solid #ddd;
+}
+
+/* Скрытый элемент */
+.hidden {
+  display: none;
 }
 
 /* Адаптивность (медиа-запросы) */
 @media (max-width: 768px) {
-    .comments-section {
-        padding: 15px;
-    }
+  .comments-section {
+    padding: 15px;
+  }
 
-    .add-comment textarea {
-        height: 80px;
-        font-size: 14px;
-    }
+  .add-comment textarea {
+    height: 80px;
+    font-size: 14px;
+  }
 
-    .add-comment button {
-        font-size: 14px;
-        padding: 10px 20px;
-    }
+  .add-comment button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
 
-    .comment {
-        padding: 15px;
-    }
+  .comment {
+    padding: 15px;
+  }
 
-    .comment .comment-text {
-        font-size: 14px;
-    }
+  .comment .comment-text {
+    font-size: 14px;
+  }
 
-    .comment-actions button {
-        font-size: 12px;
-        padding: 8px 12px;
-    }
+  .comment-actions button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
 }
 
 @media (max-width: 480px) {
-    .comments-section {
-        padding: 10px;
-    }
+  .comments-section {
+    padding: 10px;
+  }
 
-    .add-comment textarea {
-        font-size: 12px;
-        height: 60px;
-    }
+  .add-comment textarea {
+    font-size: 12px;
+    height: 60px;
+  }
 
-    .add-comment button {
-        padding: 8px 16px;
-        font-size: 12px;
-    }
+  .add-comment button {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
 
-    .comment-actions {
-        flex-direction: column;
-        gap: 8px;
-    }
+  .comment-actions {
+    flex-direction: row;
+    gap: 8px;
+  }
 
-    .comment-actions button {
-        width: 100%;
-    }
+  .comment-actions button {
+    width: 100%;
+  }
 }

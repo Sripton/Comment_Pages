@@ -1,38 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Comment Section</title>
-    <link rel="stylesheet" href="./public/css/style.css">
-</head>
-<body>
-
-<div class="comments-section">
-    <h2>Comments</h2>
-    
-    <!-- Published Comments -->
-    <div id="comments-list">
-        <div class="comment">
+    <link rel="stylesheet" href="./public/css/style.css" />
+  </head>
+  <body>
+    <div class="comments-container">
+      <div class="comments-section">
+        <h2>Comments</h2>
+        <button class="toggle-comments-btn" onclick="toggleComments(this)">
+          Show Comments
+        </button>
+        <!-- Published Comments -->
+        <div id="comments-list">
+          <div class="comment">
             <p class="comment-text">This is the first comment. Great article!</p>
             <div class="comment-actions">
-                <button class="like-btn" onclick="likeComment(this)">👍 0</button>
-                <button class="dislike-btn" onclick="dislikeComment(this)">👎 0</button>
-                <button class="reply-btn" onclick="showReplyForm(this)">Reply</button>
-                <button class="edit-btn" onclick="editComment(this)">Edit</button>
-                <button class="delete-btn" onclick="deleteComment(this)">Delete</button>
+              <button class="like-btn" onclick="likeComment(this)">👍 0</button>
+              <button class="dislike-btn" onclick="dislikeComment(this)">
+                👎 0
+              </button>
+              <button class="reply-btn" onclick="showReplyForm(this)">
+                Reply
+              </button>
+              <button class="edit-btn" onclick="editComment(this)">Edit</button>
+              <button class="delete-btn" onclick="deleteComment(this)">
+                Delete
+              </button>
             </div>
+            <div class="dots" onclick="toggleActions(this)">
+              &#x2022;&#x2022;&#x2022;
+            </div>
+            <div class="close-btn hidden" onclick="closeActions(this)">&#10006;</div>
             <div class="replies"></div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+    <!-- Hidden Reply Form -->
+    <div id="reply-form-template" class="add-comment hidden">
+      <textarea placeholder="Write a reply..."></textarea>
+      <button onclick="postReply(this)">Post Reply</button>
+    </div>
 
-<!-- Hidden Reply Form -->
-<div id="reply-form-template" class="add-comment hidden">
-    <textarea placeholder="Write a reply..."></textarea>
-    <button onclick="postReply(this)">Post Reply</button>
-</div>
-
-<script src="./public/js/index.js   "></script>
-</body>
+    <script src="./public/js/index.js   "></script>
+  </body>
 </html>
